@@ -1,5 +1,5 @@
 #!/bin/sh
-
+echo "hello world"
 app=("httpd" "mysql-server" "php php-fpm php-mysqlnd php-opcache php-gd php-xml php-mbstring" "apache2" "mysql-server mysql-client libmysqlclient-dev" "php7.2 libapache2-mod-php7.2 php-mysql	")
 
 appName=("httpd" "mysql" "php" "apache2" "mysql-server" "libapache2-mod-php7.2")
