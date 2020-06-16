@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  alpineService:
+    image: 192.168.33.11:8083/alpine_image 
+    networks:
+      - stack-network
+    entrypoint: ['/entry.sh']
+
+  mysqlService:
+    image: mysql
+    secrets:
+      - root_pass
+      - mysql_pass
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/root_pass
+      MYSQL_USER: "sridhar"
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_pass
+    entrypoint: ['docker-entrypoint.sh', '--default-authentication-plugin=mysql_native_password']
+    networks:
+      - stack-network
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    deploy:
+      replicas: 2 
+
+networks:                                                                                                         
+  stack-network:
+
+volumes:
+  mysql-volume: 
+
+secrets:
+  mysql_pass:
+    file: mysql_pass.txt
+  root_pass:
+    file: root_pass.txt  
