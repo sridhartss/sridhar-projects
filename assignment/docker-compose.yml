@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   alpineService:
-    image: 192.168.33.11:8083/alpine_image 
+    image: 192.168.33.11:8083/alpine_image:${GIT_COMMIT} 
     networks:
       - stack-network
     entrypoint: ['/entry.sh']
